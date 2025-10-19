@@ -1,7 +1,9 @@
 package net.guizhanss.villagertrade.api.trades;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
@@ -11,6 +13,10 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Preconditions;
 
+import net.guizhanss.villagertrade.utils.ProfessionResolver;
+
+import org.bukkit.NamespacedKey;
+import org.bukkit.Registry;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.WanderingTrader;
@@ -62,8 +68,23 @@ public final class TraderTypes {
                 hasWanderingTrader = true;
             } else {
                 try {
-                    Villager.Profession profession = Villager.Profession.valueOf(trader.toUpperCase());
-                    professions.add(profession);
+                    Villager.Profession profession = null;
+
+                    NamespacedKey key = NamespacedKey.fromString(trader.toLowerCase(Locale.ROOT));
+                    if (key == null || key.getNamespace().isEmpty()) {
+                        key = NamespacedKey.minecraft(trader.toLowerCase(Locale.ROOT));
+                    }
+                    profession = Registry.VILLAGER_PROFESSION.get(key);
+
+                    if (profession == null) {
+                        profession = ProfessionResolver.resolve(trader);
+                    }
+
+                    if (profession != null) {
+                        professions.add(profession);
+                    } else {
+                        throw new IllegalArgumentException("Unknown profession: " + trader);
+                    }
                 } catch (IllegalArgumentException ex) {
                     VillagerTrade.log(Level.WARNING, "Invalid trader type: " + trader
                         + ", must be " + WANDERING_TRADER + " or any villager profession");
@@ -100,7 +121,7 @@ public final class TraderTypes {
     public String toString() {
         return "TraderTypes(wanderingTrader = " + hasWanderingTrader
             + ", villagerProfessions = "
-            + villagerProfessions.stream().map(Enum::toString).collect(Collectors.joining(", "))
+            + villagerProfessions.stream().map(Object::toString).collect(Collectors.joining(", "))
             + ")";
     }
 

@@ -198,7 +198,7 @@ public final class TradeListMenu {
     @Nonnull
     @ParametersAreNonnullByDefault
     private ItemStack getItem(Material material, String key) {
-        return new CustomItemStack(
+        return CustomItemStack.create(
             material,
             VillagerTrade.getLocalization().getString(LANG_MENU + key + "." + Keys.LANG_ITEM_NAME),
             VillagerTrade.getLocalization().getStringList(LANG_MENU + key + "." + Keys.LANG_ITEM_LORE)

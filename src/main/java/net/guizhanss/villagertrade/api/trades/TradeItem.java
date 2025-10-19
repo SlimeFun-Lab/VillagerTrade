@@ -82,7 +82,7 @@ public final class TradeItem {
             }
             case "SLIMEFUN" -> {
                 try {
-                    tempItem = new CustomItemStack(SlimefunItem.getById(id).getItem(), amount);
+                    tempItem = CustomItemStack.create(SlimefunItem.getById(id).getItem(), amount);
                     tempType = TradeItemType.SLIMEFUN;
                 } catch (Exception ex) {
                     VillagerTrade.log(Level.SEVERE, "The id " + id + " is not a valid Slimefun item");
@@ -90,7 +90,7 @@ public final class TradeItem {
             }
             case "CUSTOM" -> {
                 try {
-                    tempItem = new CustomItemStack(VillagerTrade.getCustomItemService().getItem(id), amount);
+                    tempItem = CustomItemStack.create(VillagerTrade.getCustomItemService().getItem(id), amount);
                     tempType = TradeItemType.CUSTOM;
                 } catch (Exception ex) {
                     VillagerTrade.log(Level.SEVERE, "The id " + id + " is not a valid custom item");

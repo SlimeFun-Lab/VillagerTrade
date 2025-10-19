@@ -24,7 +24,7 @@ import lombok.experimental.UtilityClass;
 public final class ItemUtils {
     @Nonnull
     public ItemStack addGlow(@Nonnull ItemStack item) {
-        item.addUnsafeEnchantment(Enchantment.LUCK, 1);
+        item.addUnsafeEnchantment(Enchantment.UNBREAKING, 1);
         ItemMeta meta = item.getItemMeta();
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         item.setItemMeta(meta);

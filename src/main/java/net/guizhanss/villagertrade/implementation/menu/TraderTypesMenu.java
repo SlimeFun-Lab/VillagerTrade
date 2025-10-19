@@ -168,7 +168,7 @@ public final class TraderTypesMenu {
 
     @Nonnull
     private ItemStack getTraderItem(Heads hash, String name, boolean enabled) {
-        return new CustomItemStack(
+        return CustomItemStack.create(
             hash.getItem(),
             ChatColor.YELLOW + ChatUtils.humanize(name) + ChatColor.GRAY + ": "
                 + (enabled ? Strings.CHECK : Strings.CROSS)
@@ -177,7 +177,7 @@ public final class TraderTypesMenu {
 
     @Nonnull
     private ItemStack getConfirmItem() {
-        return new CustomItemStack(
+        return CustomItemStack.create(
             Material.GREEN_STAINED_GLASS_PANE,
             VillagerTrade.getLocalization().getString("menu.trader_types.confirm.name"),
             VillagerTrade.getLocalization().getStringList("menu.trader_types.confirm.lore")
@@ -186,7 +186,7 @@ public final class TraderTypesMenu {
 
     @Nonnull
     private ItemStack getCancelItem() {
-        return new CustomItemStack(
+        return CustomItemStack.create(
             Material.RED_STAINED_GLASS_PANE,
             VillagerTrade.getLocalization().getString("menu.trader_types.cancel.name"),
             VillagerTrade.getLocalization().getStringList("menu.trader_types.cancel.lore")
