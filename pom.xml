@@ -6,11 +6,11 @@
 
     <groupId>net.guizhanss</groupId>
     <artifactId>VillagerTrade</artifactId>
-    <version>UNOFFICIAL</version>
+    <version>2.0.0-UNOFFICIAL</version>
     <packaging>jar</packaging>
 
     <properties>
-        <java.version>16</java.version>
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <sonar.organization>guizhancraft</sonar.organization>
@@ -89,14 +89,14 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21.1-R0.1-SNAPSHOT</version>
+            <version>1.21.10-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.github.SlimeFun-Lab</groupId>
             <artifactId>Slimefun4</artifactId>
-            <version>3ea21da</version>
+            <version>6d5694e</version>
             <scope>provided</scope>
         </dependency>
 
